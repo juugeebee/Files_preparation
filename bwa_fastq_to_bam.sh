@@ -3,7 +3,11 @@
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate fastq_bam_env
 
-REF="/media/Data1/jbogoin/ref/fa_hg38/hg38_GenDev/hg38_GenDev.fa"
+# hg38
+#REF="/media/Data1/jbogoin/ref/fa_hg38/hg38_GenDev/hg38_GenDev.fa"
+
+# hg19
+REF="/media/Data1/jbogoin/ref/hg19_ref/hg19_std.fa"
 
 echo ""
 echo "bwa_fastq_to_bam.sh start"
@@ -12,10 +16,10 @@ echo ""
 #rm *.bam
 
 ## MAPPING BWA SEQUENTIAL ###
-for R1 in *.R1.fastq.gz; 
+for R1 in *_R1_001.fastq.gz; 
 
     do 
-    R2=${R1/.R1/.R2}; 
+    R2=${R1/_R1/_R2}; 
 
     SAMPLE=${R1%%_*}; 
 
