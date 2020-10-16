@@ -8,6 +8,8 @@ pp = pprint.PrettyPrinter(indent=4)
 
 ref = "/media/Data1/jbogoin/ref/hg19_ref/hg19_std.fa.gz"
 
+print("\ncram.sh start.\n")
+
 run = sys.argv[1].replace("SeqCap_EZ_MedExome","SeqCap-EZ-MedExome")
 techno = run.split("_")[0]
 date = run.split("_")[1]
@@ -15,7 +17,7 @@ if len(sys.argv[1].split('_')) > 4:
     date = date + "-" + str(run.split('_')[-1])
 ped_d = {}
 count = 0
-with open("../pedigree.txt", 'r') as ped:
+with open("pedigree.txt", 'r') as ped:
     for line in ped:
         fam, index, index_sex, index_ped, mom, mom_ped, dad, dad_ped = "", "", "", "", "", "", "", ""
         line = line.rstrip()
@@ -58,19 +60,31 @@ with open("../pedigree.txt", 'r') as ped:
             ped_d[dad]['trio'] = trio
             
             
-pp.pprint(ped_d)
+# pp.pprint(ped_d)
 
-for f in glob.glob('*.bam'):
-    sample = f.split('.')[0]
-    #extension = str('.'.join(f.split('.')[1:]))
+for f in glob.glob('./BAM/*.bam'):
+    
+    file = f.split('/')[2]
+    sample = file.split('.')[0]
     extension = ".cram"
+    
     if ped_d[sample]['fam'].startswith('NA'):
         ped_d[sample]['fam'] = 'NA'
-    items = [sample, ped_d[sample]['ped'], techno, date, ped_d[sample]['fam'], ped_d[sample]['trio']]
+    
+    items = [sample, ped_d[sample]['ped'], techno, date, \
+        ped_d[sample]['fam'], ped_d[sample]['trio']]
+
+    print(sample)
+    print(ped_d[sample]['ped'])
+    print(techno)
+    print(date)
+    print(ped_d[sample]['fam'])
+    print()
+
     new_name = str('_'.join(items)) + extension
-    
-    
     print(new_name)
 
-    subprocess.call("time samtools view -@ 12 -C -T " + ref + " -o " + new_name + " " + f, shell = "/bin/bash")
-    subprocess.call("time samtools index " + new_name, shell = "/bin/bash")
+    # subprocess.call("time samtools view -@ 12 -C -T " + ref + " -o " + new_name + " " + f, shell = "/bin/bash")
+    # subprocess.call("time samtools index " + new_name, shell = "/bin/bash")
+
+print("\ncram.sh job done!\n")
