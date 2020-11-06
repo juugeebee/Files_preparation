@@ -88,8 +88,10 @@ for f in glob.glob('./BAM/*.bam'):
 
     subprocess.call("samtools view -@ 12 -C -T " + ref + " -o " + new_name + " " + f, shell = "/bin/bash")
     subprocess.call("samtools index " + new_name, shell = "/bin/bash")
-    subprocess.call("mkdir CRAM")
-    subprocess.call("mv *.cram CRAM")
-    subprocess.call("mv *.cram.crai CRAM")
+
+subprocess.call("mkdir CRAM", shell = "/bin/bash")
+subprocess.call("mv *.cram CRAM", shell = "/bin/bash")
+subprocess.call("mv *.cram.crai CRAM", shell = "/bin/bash")
+
 
 print("\ncram.py job done!\n")
