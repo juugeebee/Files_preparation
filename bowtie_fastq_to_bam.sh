@@ -13,16 +13,16 @@ DATA=$PWD
 rm -f *.bam*
 
 ## MAPPING BWA SEQUENTIAL 
-for R1 in *_R1_*.fastq.gz; 
+for R1 in *_R1_001.fastq.gz; 
     
     do 
     R2=${R1/_R1_/_R2_}; 
 
     SAMPLE=${R1%%_*};
 
-    cd /media/Data2/jbogoin/ref;
+    cd /media/Data1/jbogoin/ref/fa_hg19/;
 
-    bowtie2 -p 36 -x hg38_GenDev -1 $DATA/$R1 -2 $DATA/$R2 -S $DATA/$SAMPLE.sam;
+    bowtie2 -p 36 -x hg19_std -1 $DATA/$R1 -2 $DATA/$R2 -S $DATA/$SAMPLE.sam;
 
     cd $DATA
 
@@ -30,7 +30,7 @@ for R1 in *_R1_*.fastq.gz;
 
     samtools sort -@ 36 $SAMPLE.bam -o $SAMPLE.sorted.bam;
 
-    #samtools index -@ 12 $SAMPLE.sorted.bam;
+    samtools index -@ 12 $SAMPLE.sorted.bam;
 
 done
 

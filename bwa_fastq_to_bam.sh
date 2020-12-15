@@ -18,8 +18,7 @@ echo ""
 ## MAPPING BWA SEQUENTIAL ###
 for R1 in *_R1_001.fastq.gz; 
 
-    do 
-    R2=${R1/_R1/_R2}; 
+    do R2=${R1/_R1/_R2}; 
 
     SAMPLE=${R1%%_*}; 
 
@@ -38,7 +37,7 @@ for R1 in *_R1_001.fastq.gz;
 
  done;
 
-### MARK DUPLICATES
+## MARK DUPLICATES
 for i in *.bam; 
     
     do 

@@ -11,7 +11,7 @@ for bam_name in *.dedup.bam; \
 
 do SAMPLE=${bam_name%%.dedup.bam} \
 
-gatk SamToFastq -I $bam_name -F $SAMPLE.R1.fastq.gz -F2 $SAMPLE.R2.fastq.gz
+gatk SamToFastq -I $bam_name -F $SAMPLE.R1.fastq.gz -F2 $SAMPLE.R2.fastq.gz --VALIDATION_STRINGENCY SILENT
 
 done
 

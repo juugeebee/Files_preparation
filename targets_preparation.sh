@@ -15,7 +15,7 @@ DIC="/media/Data1/jbogoin/ref/hg38_Mlast/hg38_GenDev.dict"
 #wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.basic.annotation.gff3.gz
 
 # Recupérer les CDS
-zgrep "CDS" gencode.v34.basic.annotation.gff3.gz > gencode.v34.basic.annotation.CDS.gff3
+zgrep " CDS " gencode.v34.basic.annotation.gff3.gz > gencode.v34.basic.annotation.CDS.gff3
 
 # Ajouter une 4ème colonne et trier
 awk -F "\t" '{print $1"\t"$4-1"\t"$5}' gencode.v34.basic.annotation.CDS.gff3 \
