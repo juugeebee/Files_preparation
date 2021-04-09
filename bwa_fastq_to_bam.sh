@@ -4,10 +4,10 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate fastq_bam_env
 
 # hg38
-REF="/media/Data1/jbogoin/ref/fa_hg38/hg38_GenDev/hg38_GenDev.fa"
+#REF="/media/Data1/jbogoin/ref/fa_hg38/hg38_GenDev/hg38_GenDev.fa"
 
 # hg19
-#REF="/media/Data1/jbogoin/ref/hg19_ref/hg19_std.fa"
+REF="/media/Data1/jbogoin/ref/fa_hg19/hg19_std/hg19_std.fa"
 
 echo ""
 echo "bwa_fastq_to_bam.sh start"
@@ -16,7 +16,7 @@ echo ""
 #rm *.bam
 
 ## MAPPING BWA SEQUENTIAL ###
-for R1 in *.R1.fastq.gz; 
+for R1 in *_R1_001.fastq.gz; 
 
     do R2=${R1/.R1/.R2}; 
 
@@ -35,15 +35,17 @@ for R1 in *.R1.fastq.gz;
 
     eval $MAPPING_CMD;
 
-done;
+done
+
+## index .bam
+for bam in *.bam;
+    do samtools index $bam;
+done
 
 ## MARK DUPLICATES
-for i in *.bam; 
-    
+for i in *.bam;   
     do 
     SAMPLE=${i%.*};
-    
     sambamba markdup -t 36 ${SAMPLE}.bam ${SAMPLE}.dedup.bam;
-    
 done
 

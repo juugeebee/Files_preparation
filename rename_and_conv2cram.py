@@ -9,7 +9,8 @@ print("\ncram.py start.\n")
 
 pp = pprint.PrettyPrinter(indent=4)
 
-ref = "/media/Data1/jbogoin/ref/hg19_ref/hg19_std.fa.gz"
+#ref = "/media/Data1/jbogoin/ref/hg19_ref/hg19_std.fa.gz"
+ref = "/media/Data1/jbogoin/ref/fa_hg19/hg19_ref/hg19_std.fa.gz" 
 
 run = sys.argv[1].replace("SeqCap_EZ_MedExome","SeqCap-EZ-MedExome")
 
