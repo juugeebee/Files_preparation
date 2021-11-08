@@ -42,6 +42,12 @@ gatk MarkDuplicates \
         --METRICS_FILE $SAMPLE.marked_dup_metrics.txt \
         --VALIDATION_STRINGENCY SILENT;
 
+# gatk MarkDuplicates \
+#         -I $bam_na \
+#         -O $SAMPLE.marked_duplicates.bam \
+#         --METRICS_FILE $SAMPLE.marked_dup_metrics.txt \
+#         --VALIDATION_STRINGENCY SILENT;
+
 samtools index $SAMPLE.marked_duplicates.bam;
 
 done
