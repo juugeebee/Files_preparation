@@ -11,9 +11,8 @@ echo ""
 echo "bwa_fastq_to_bam.sh start"
 echo ""
 
-rm *.bam
 
-## MAPPING BWA SEQUENTIAL ###
+### ALIGNEMENT ###
 for R1 in *_R1_001.fastq.gz; 
     do R2=${R1/.R1/.R2}; 
     SAMPLE=${R1%%.*}; 
@@ -25,16 +24,16 @@ for R1 in *_R1_001.fastq.gz;
     eval $MAPPING_CMD;
 done
 
-## INDEXING ###
-for bam in *.bam;
-do samtools index $bam;
-done
 
-## MARK DUPLICATES
+### MARK DUPLICATES ###
 for i in *.bam;
 do SAMPLE=${i%.*};
 sambamba markdup -t 36 ${SAMPLE}.bam ${SAMPLE}.dedup.bam;
 done
+
+
+### REMOVING BAM ###
+rm -f --interactive=never *_001.bam
 
 
 echo ""
