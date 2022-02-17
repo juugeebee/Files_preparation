@@ -41,6 +41,28 @@ echo ""
 echo "targets_preparation job done!"
 echo ""
 
+## QC ##
+# zgrep "        CDS     " gencode.v36.basic.annotation.gff3.gz | grep -v ";level=3;" > gencode-v36.basic.annotation.CDS.lvl1-2.gff3
 
+# awk -F "\t" '{print $1"\t"$4-1"\t"$5}' gencode-v36.basic.annotation.CDS.lvl1-2.gff3 | sort -Vu > gencode-v36.basic.annotation.CDS.lvl1-2.sortU.bed
+
+# bedtools merge -i gencode-v36.basic.annotation.CDS.lvl1-2.sortU.bed > gencode-v36.basic.annotation.CDS.lvl1-2.sortU.merged.bed
+
+# grep -v "^chrX" gencode-v36.basic.annotation.CDS.lvl1-2.sortU.merged.bed | grep -v "^chrY" > gencode-v36.basic.annotation.CDS.lvl1-2.sortU.merged.autosomes.bed
+
+# java -jar ~/Programmes/gatk-4.1.8.1/gatk-package-4.1.8.1-local.jar BedToIntervalList -I gencode-v36.basic.annotation.CDS.lvl1-2.sortU.merged.autosomes.bed -O gencode-v36.basic.annotation.CDS.lvl1-2.sortU.merged.autosomes.intervalList -SD /home/jburatti/Programmes/reference_genome/hg38/GRCH38p13/GenDev/hg38_GenDev.fa.gz.dict
+
+# ---------------------------
+
+## CALLING ##
+# zgrep "        CDS     " gencode.v36.basic.annotation.gff3.gz > gencode-v36.basic.annotation.CDS.lvl1-2-3.gff3
+
+# awk -F "\t" '{print $1"\t"$4-1"\t"$5}' gencode-v36.basic.annotation.CDS.lvl1-2-3.gff3 | sort -Vu > gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.bed
+
+# awk -F "\t" '{print $1"\t"$2-75"\t"$3+75}' gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.bed | sort -Vu > gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.pad75.bed
+
+# bedtools merge -i gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.pad75.bed > gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.pad75.merged.bed
+
+# for i in {1..22} X Y; do grep "^chr${i}	" gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.pad75.merged.bed > gencode-v36.basic.annotation.CDS.lvl1-2-3.sortU.pad75.merged.chr${i}.bed; done
 
 

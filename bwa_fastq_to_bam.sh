@@ -14,8 +14,8 @@ echo ""
 
 ### ALIGNEMENT ###
 for R1 in *_R1_001.fastq.gz; 
-    do R2=${R1/.R1/.R2}; 
-    SAMPLE=${R1%%.*}; 
+    do R2=${R1/_R1/_R2}; 
+    SAMPLE=${R1%%_*}; 
     FLOWCELL="$(zcat $R1 | head -1 | awk '{print $1}' | cut -d ":" -f 3)";
     DEVICE="$(zcat $R1 | head -1 | awk '{print $1}' | cut -d ":" -f 1 | cut -d "@" -f 2)";
     BARCODE="$(zcat $R1 | head -1 | awk '{print $2}' | cut -d ":" -f 4)";
