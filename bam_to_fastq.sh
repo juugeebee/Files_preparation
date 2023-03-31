@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate gatk4_env
+conda activate gatk4
 
 echo ""
 echo "bam_to_fastq.sh start"
