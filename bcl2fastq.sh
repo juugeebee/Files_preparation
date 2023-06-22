@@ -7,7 +7,7 @@ echo ""
 echo "bcl2fastq.sh start"
 echo ""
 
-bcl2fastq --barcode-mismatches 0 --minimum-trimmed-read-length 35 --no-lane-splitting -R "." \
+bcl2fastq --barcode-mismatches 0 --minimum-trimmed-read-length 50 --no-lane-splitting -R "." \
 --sample-sheet "SampleSheet.csv" -o ./Fastq
 
 # # CONCATENER

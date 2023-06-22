@@ -5,7 +5,7 @@ conda activate fastq_bam_env
 
 
 REF="/media/jbogoin/Data1/References/fa_hg19/hg19_std_M-rCRS_Y-PAR-mask.fa"
-
+#REF='/media/jbogoin/Data1/References/fa_hg38/hg38_GenDev/hg38_GenDev.fa'
 
 echo ""
 echo "bwa_fastq_to_bam.sh start"
@@ -20,7 +20,7 @@ for R1 in *_R1_001.fastq.gz;
     DEVICE="$(zcat $R1 | head -1 | awk '{print $1}' | cut -d ":" -f 1 | cut -d "@" -f 2)";
     BARCODE="$(zcat $R1 | head -1 | awk '{print $2}' | cut -d ":" -f 4)";
     RG=$(echo "\"@RG\tID:${DEVICE}.${FLOWCELL}.${SAMPLE}\tPU:${FLOWCELL}\tSM:${SAMPLE}\tPL:ILLUMINA\tLB:${SAMPLE}-${BARCODE}\"");
-    MAPPING_CMD=$(echo "bwa mem -M -Y -t 24 -R $RG $REF $R1 $R2 | samtools sort -@ 6 -o ${SAMPLE}.bam -");
+    MAPPING_CMD=$(echo "bwa mem -M -Y -t 36 -R $RG $REF $R1 $R2 | samtools sort -@ 6 -o ${SAMPLE}.bam -");
     eval $MAPPING_CMD;
 done
 
