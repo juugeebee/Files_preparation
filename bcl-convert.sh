@@ -23,8 +23,6 @@ bcl-convert --force --bcl-input-directory "$run_dir" --sample-sheet "$run_dir"/S
 
 cd Fastq/
 bash ~/SCRIPTS/Files_preparation/cat_fastq.sh 
-mv -Rf Logs ../Fastq
-mv -Rf Reports ../Fastq
 
 
 echo ""
