@@ -21,10 +21,6 @@ fi
 bcl-convert --force --bcl-input-directory "$run_dir" --sample-sheet "$run_dir"/SampleSheet.csv --output-directory "$run_dir"/Fastq/ --fastq-gzip-compression-level 5
 
 
-cd Fastq/
-bash ~/SCRIPTS/Files_preparation/cat_fastq.sh 
-
-
 echo ""
 echo "bcl-convert.sh job done!"
 echo ""

@@ -14,7 +14,7 @@ for i in *_R1_001.fastq.gz;
 
     do SAMPLE=${i%%_*};
     echo $SAMPLE
-    cat "$SAMPLE"_S**_L00*_R1_001.fastq.gz > ../../Fastq/"$SAMPLE"_R1_001.fastq.gz;
+    cat "$SAMPLE"_S**_L00*_R1_001.fastq.gz > ./Fastq/"$SAMPLE"_R1_001.fastq.gz;
 
 done
 
@@ -23,16 +23,12 @@ for i in *_R2_001.fastq.gz;
 
     do SAMPLE=${i%%_*};
     echo $SAMPLE
-    cat "$SAMPLE"_S**_L00*_R2_001.fastq.gz > ../../Fastq/"$SAMPLE"_R2_001.fastq.gz;
+    cat "$SAMPLE"_S**_L00*_R2_001.fastq.gz > ./Fastq/"$SAMPLE"_R2_001.fastq.gz;
 
 done
 
 
-mv -Rf Logs ../../Fastq
-mv -Rf Reports ../../Fastq
-
-
-# rm *_L**_R*.fastq.gz
+rm *_L**_R*.fastq.gz
 
 
 echo ""
