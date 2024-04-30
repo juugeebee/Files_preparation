@@ -18,7 +18,8 @@ if [ -d "$run_dir/Fastq" ]; then
 fi
 
 
-bcl-convert --force --bcl-input-directory "$run_dir" --sample-sheet "$run_dir"/SampleSheet.csv --output-directory "$run_dir"/Fastq/ --fastq-gzip-compression-level 5
+bcl-convert --force --bcl-input-directory "$run_dir" --sample-sheet "$run_dir"/SampleSheet.csv \
+	--output-directory "$run_dir"/Fastq/ --fastq-gzip-compression-level 5 --bcl-num-parallel-tiles 1
 
 
 echo ""
