@@ -1,4 +1,5 @@
-primary_file = '/run/user/1000/gvfs/smb-share:server=psl-s-nasad,share=fedseq/UF_de_neurogenetique/Dossier LABORATOIRE/TECHNICIENS/Julie/SeqPilot/EPICHIR_v1/edsf_1000097015_20mm_primary_targets.bed'
+# primary_file = '/run/user/1000/gvfs/smb-share:server=psl-s-nasad,share=fedseq/UF_de_neurogenetique/Dossier LABORATOIRE/TECHNICIENS/Julie/SeqPilot/EPICHIR_v1/edsf_1000097015_20mm_primary_targets.bed'
+primary_file = '/home/jbogoin/Downloads/PAGEMv6_bed_appel_variants_hg38.bed'
 
 ligne_l = []
 
@@ -26,7 +27,7 @@ for region in ligne_l :
     #stopi = s[2]
     #stopi_l.append(stopi[:-1])
     stopi_l.append(s[2])
-    genes_l.append(s[3])
+    # genes_l.append(s[3])
 
 
 startf_l = []
@@ -47,9 +48,14 @@ for i in range(len(stopi_l)) :
         startf_l.append(d)
 
 
-with open("/run/user/1000/gvfs/smb-share:server=psl-s-nasad,share=fedseq/UF_de_neurogenetique/Dossier LABORATOIRE/TECHNICIENS/Julie/SeqPilot/EPICHIR_v1/EPICHIR_v1_30_18012024.bed", "w") as filout:
+# output_file = '/run/user/1000/gvfs/smb-share:server=psl-s-nasad,share=fedseq/UF_de_neurogenetique/Dossier LABORATOIRE/TECHNICIENS/Julie/SeqPilot/EPICHIR_v1/EPICHIR_v1_30_18012024.bed'
+output_file = '/home/jbogoin/Downloads/PAGEMv6_bed_appel_variants_sorted_hg38.bed'
+
+
+with open(output_file, "w") as filout:
     for i in range(len(stopf_l)) :
         filout.write(str(chr_l[i]) + '\t')
         filout.write(str(startf_l[i]-30) + '\t')
-        filout.write(str(stopf_l[i]+30) + '\t')
-        filout.write(str(genes_l[i]) + '\n')
+        filout.write(str(stopf_l[i]+30) + '\n')
+        # filout.write(str(stopf_l[i]+30) + '\t')
+        # filout.write(str(genes_l[i]) + '\n')

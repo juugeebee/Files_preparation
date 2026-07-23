@@ -7,12 +7,17 @@ echo ""
 echo "bam_to_fastq.sh start"
 echo ""
 
-for bam_name in *.dedup.bam; \
+mkdir -p ../Fastq/
 
-do SAMPLE=${bam_name%%.dedup.bam} \
+for bam_name in *Aligned.sortedByCoord.out.bam
+do
+    SAMPLE=${bam_name%%Aligned.sortedByCoord.out.bam}
 
-gatk SamToFastq -I $bam_name -F $SAMPLE.R1.fastq.gz -F2 $SAMPLE.R2.fastq.gz --VALIDATION_STRINGENCY SILENT
-
+    gatk SamToFastq \
+        -I "$bam_name" \
+        -F  "../Fastq/${SAMPLE}_R1.fastq.gz" \
+        -F2 "../Fastq/${SAMPLE}_R2.fastq.gz" \
+        --VALIDATION_STRINGENCY SILENT
 done
 
 echo ""

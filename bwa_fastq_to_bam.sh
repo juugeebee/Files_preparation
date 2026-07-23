@@ -4,8 +4,8 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate fastq_bam_env
 
 
-REF="/media/jbogoin/Data1/References/fa_hg19/hg19_std_M-rCRS_Y-PAR-mask.fa"
-#REF='/media/jbogoin/Data1/References/fa_hg38/hg38_GenDev/hg38_GenDev.fa'
+# REF="/media/jbogoin/Data1/References/fa_hg19/hg19_std_M-rCRS_Y-PAR-mask.fa"
+REF='/media/jbogoin/Data1/References/fa_hg38/hg38_GenDev/hg38_GenDev.fa'
 
 echo ""
 echo "bwa_fastq_to_bam.sh start"
